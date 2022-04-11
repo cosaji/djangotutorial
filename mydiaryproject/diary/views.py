@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from .forms import DiaryForm
+from django.views.generic import TemplateView, CreateView
 
 class IndexView(TemplateView):
 	template_name = 'index.html'
