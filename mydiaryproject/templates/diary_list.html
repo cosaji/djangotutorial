@@ -7,8 +7,8 @@
 <body>
 {% for diary in diary_list %}
 <p>
-		{{ diary.date }}
-		<a href="{% url 'diary:diary_detail' diary.pk %}">{{ diary.title }}</a>
+	{{ diary.date }}
+	<a href="{% url 'diary:diary_detail' diary.pk %}">{{ diary.title }}</a>
 </p>
 {% endfor %}
 <a href="{% url 'diary:index' %}">戻る</a>
