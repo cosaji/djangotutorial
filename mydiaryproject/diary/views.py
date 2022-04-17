@@ -5,6 +5,7 @@ from .forms import DiaryForm, Diary
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 import datetime
 from django.utils import timezone
+from django.http import HttpResponseRedirect
 
 class IndexView(TemplateView):
 	template_name = 'index.html'
