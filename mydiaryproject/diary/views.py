@@ -1,7 +1,8 @@
 from pyexpat import model
+from re import template
 from django.urls import reverse_lazy
 from .forms import DiaryForm, Diary
-from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 import datetime
 from django.utils import timezone
 
@@ -36,3 +37,17 @@ class DiaryUpdateView(UpdateView):
 		diary.save()
 		return super().form_valid(form)
 
+class DiaryDeleteView(DeleteView):
+	template_name = 'diary_delete.html'
+	model = Diary
+	success_url = reverse_lazy('diary:diary_list')
+
+	def delete(self, request, *args, **kwargs):
+		"""
+		Call the delete() method on the fetched object and then redirect to the
+		success URL.
+		"""
+		self.object = self.get_object()
+		success_url = self.get_success_url()
+		self.object.delete()
+		return HttpResponseRedirect(success_url)
